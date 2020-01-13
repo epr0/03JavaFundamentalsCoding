@@ -28,6 +28,12 @@ the third decimal point.
 6. Create three variables, one for each type: float, byte and char. Enter values corresponding to
 those types using Scanner. What values are you able to enter for each type?
 
+### Better understanding of methods
+1. Write a method that receives 2 string parameters and checks if the second string is contained by the first one. The method will return a boolean. Example: returns true for “The Witcher” and “Witcher”.
+2. Write a method that receives 2 parameters, a string and an int, and checks if the int variable is contained by the string. The method will return a boolean. Example: returns true for string “2 apples”  and int 2.
+3. Write a method that receives 2 integer parameters and check id the first int contains the second int. The method will return a boolean. Example: returns true for 123 and 1.
+4. Can the above methods(1,2,3) have the same name?
+
 ### Flow control, loops and arrays
 1. Write an application that will show if entered value is greater, equal or lower than 30.
 
@@ -62,15 +68,38 @@ printed to the console.
 - go to the beginning of a loop if user will enter “continue”,
 - break the loop with a “good bye!” message, if user will enter “quit”.
 
-9. Write an application that will find biggest value within array of int variables.
-- check your application using randomly generated array (use Random class),
-- check your application at least 5 times in a loop (generate random array -> print
+9. Write a program that implements the following operations for integer numbers (test the methods in the main() method):
+    1. Add(+)
+    2. Subtract(-)
+    3. Multiply(*)
+    4. Divide(/)
+    5. Sqrt
+
+### Exercises with arrays
+
+1. Write an application that will find biggest value within array of int variables.
+    - check your application using randomly generated array (use Random class),
+    - check your application at least 5 times in a loop (generate random array -> print
 array to the console -> find biggest value -> print biggest value -> manually verify
 results).
-
-10. Write an application that will find the longest char sequence within an array of type String.
+2. Write an application that will find the longest char sequence within an array of type String.
 Test it in the same way as you have done in the previous exercise. How will you generate
 random char sequences?
+
+3. Given 2 arrays with integer values check if the arrays are the same(same length and same elements in that order).
+    1. First write the code in the main() method.
+    2. Check if other 2 arrays are the same - copy the code and adapt it to use these 2 arrays.
+    3. Talk about duplicate code.
+    4. Extract the code into a method and reuse it.
+    5. Talk about code reusability.
+4. Write a method that receives an array of long values and returns the array in reverse order.
+5. Write a program that does the following(the code should be written in separate methods):
+    1. Generated an array with 10 elements random between 0 and 99. (See Random class in java).
+    2. Display the generated array.
+    3. Display only the odd numbers.
+    4. Display only the even numbers.
+6. Having an array with integer numbers rearrange the elements to have the positive numbers on the left and the negative numbers on the right. Do not use any sorting methods.
+7. Write a program that rotates the array elements 1 position to the right.
 
 ### Object oriented programming
 1. Grocery Shopping
