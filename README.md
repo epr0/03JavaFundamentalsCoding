@@ -37,10 +37,24 @@ those types using Scanner. What values are you able to enter for each type?
 ### Flow control, loops and arrays
 1. Write an application that will show if entered value is greater, equal or lower than 30.
 
-2. As above but compare two values at the same time. Verify if first value is greater than 30 and
-second value is greater than 30, and so on.
+2. As above but compare two values at the same time. 
+Show if both values are greater, equal or lower than 30. 
+Otherwise show "<>".
+Example:
+input: 22, 25 output: lower
+input: 30, 30 output: equal
+input: 32, 33 output: greater
+input: 22, 32 output: <>
+input: 32, 22 output: <>
 
-3. As above but only one of the values has to be greater, equal or lower than 30.
+3. As above but only one of the values has to be greater than 30.
+Example:
+input: 22, 25 output: lower
+input: 30, 30 output: equal
+input: 32, 33 output: greater
+input: 22, 32 output: greater
+input: 32, 22 output: greater
+
 
 4. Write an application that for any entered number between 0 and 9 will provide it’s name. For
 example for “3” program should print “three”.
