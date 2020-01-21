@@ -7,6 +7,10 @@ exercise described below - it's also a time for a little repetition of the theor
 handle it.
  
 # Exercises
+
+First try your hand with the following exercises: [Java Fundamentals Exercises](https://gitlab.com/sda-international/program/java/java-fundamentals-coding/-/wikis/uploads/196b546b071118a64421deb2822d18c4/03_Java_Fundamentals_Coding_Exercises.pdf)
+Once you've solved them yourself check your solution against the solutions presented in the code.
+
 ## Basics
 1. Use System.out.print method to print the same statement in separate lines.
 ```
