@@ -124,12 +124,13 @@ random char sequences?
 1. Grocery Shopping
 - Create class Product, it should contain at least two fields – name and price.
 - Create an empty array of Products – it’s size should be at least 5.
-- Fill it within while loop. Simulate the process of doing shopping:
+- Populate the array with some products - this array represents the menu for the user.
+- Simulate the process of doing shopping:
     - ask for a product,
     - add it to the cart (array),
     - change index,
     - if index will be greater than 5 – finish shopping,
-    - *pay for the products.
+    - pay for the products.
 
 2. Petrol Station
 - Simulate the process of refueling. Within the while loop ask user if you should
@@ -146,7 +147,7 @@ amount of petrol and money (both of type double) and view it on the console.
 asked for an exercise to be done. Every exercise should add/reduce
 stamina/strength.
 - Take into account that stamina should not be reduced below 0.
-- *Consider adding some supplements that will recover the stamina. Supplement
+- Consider adding some supplements that will recover the stamina. Supplement
 should be additional class.
 
 4. *Tic Tac Toe. Remember – keep it simple. You may use two-dimensional array to store the
