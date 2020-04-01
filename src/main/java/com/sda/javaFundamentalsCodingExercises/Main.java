@@ -90,8 +90,14 @@ public class Main {
         DataTypesExercises.printSumDigits(133);
 
         System.out.println("\n\n");
-
-
+        
+        DataTypesExercises.convertToMeters(25.25, 6.0, 15, 85.268);
+        
+        System.out.println("\n\n");
+        
+        DataTypesExercises.calculateAcceleration(0, 100, 10, 1000);
+        
+        System.out.println("\n\n");
 
 
         System.out.println("---------------Loops Exercises----------------");

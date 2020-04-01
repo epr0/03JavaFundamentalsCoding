@@ -114,4 +114,41 @@ public class DataTypesExercises {
 
         System.out.printf("Sum of number %d's digits is: %d", originalNumber, sumDigits);
     }
+    
+    //convert inches, feet, miles to meters
+    public static void convertToMeters(double inches, double feet, double miles, double yards) {
+         double inchesToMeters = inches * 0.0254;
+         double feetToMeters = feet * 0.3048;
+         double milesToMeters = miles * 1609;
+         double yardsToMeters = yards * 0.914;
+         System.out.printf(inches + " inch is %.3f meters", inchesToMeters);
+         System.out.println();
+         System.out.printf(feet + " feet is %.3f meters", feetToMeters);
+         System.out.println();
+         System.out.printf(miles + " mile is %.3f meters" , milesToMeters);
+         System.out.println();
+         System.out.printf(yards + " yard is %.3f meters" , yardsToMeters);
+    }
+    
+    /**
+     * Calculate:
+     * 1. Acceleration - A = deltaV (difference in speed) / deltaT (difference in time)
+     * 	1.1 deltaV = finalSpeed - startSpeed
+     *  1.2 deltaT = finalTime - startTime (or time used in total)
+     * @param startSpeed
+     * @param finalSpeed
+     * @param timeUsedInSeconds
+     * @param objectMass
+     */
+    public static void calculateAcceleration(int startSpeed, int finalSpeed, int timeUsedInSeconds, int objectMass) {
+    	double deltaSpeed = finalSpeed - startSpeed;
+    	double speedInMetersPerSecond = deltaSpeed * 5 / 18;
+    	System.out.printf("Speed %.2f km/h is converted to %.2f m/s", deltaSpeed, speedInMetersPerSecond);
+    	System.out.println();
+    	double acceleration = speedInMetersPerSecond / timeUsedInSeconds;
+    	System.out.printf("Acceleration: %.2f m/s^2", acceleration);
+    	System.out.println();
+    	double distanceTraveled = speedInMetersPerSecond * timeUsedInSeconds;
+    	System.out.printf("Distance traveled: %.2f meters", distanceTraveled);
+    }
 }
