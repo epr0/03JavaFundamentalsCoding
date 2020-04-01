@@ -26,14 +26,20 @@ public class GameMain {
         do {
             char raide = scanner.next().charAt(0);
             if(zodis.indexOf(raide) != -1) {
-                System.out.println("Atspejai! Teisinga raide buvo [" + raide + "] Spek toliau!");
+                System.out.println("Atspejai raide! Teisinga raide buvo [" + raide + "] Spek toliau!");
                 for(int i = 0; i < zodis.toCharArray().length; i++){
                     if(zodis.toCharArray()[i] == raide) {
                         globalCharArray[i] = raide;
                     }
 
                 }
-                System.out.println("Zodis, kuris turi atspeti: " + new String(globalCharArray));
+               
+                //Jeigu nebera neatspetu simboliu
+                if(!new String(globalCharArray).contains("*")) {
+                	System.out.print("Sveikiname! Atspejai zodi >>> [" + new String(globalCharArray) + "] <<<");
+                } else {
+                	 System.out.println("Zodis, kuris turi atspeti, atrodo taip: " + new String(globalCharArray));
+                }
             } else {
                 invokePrinting();
 
