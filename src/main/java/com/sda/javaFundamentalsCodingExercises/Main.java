@@ -141,6 +141,16 @@ public class Main {
         LoopsExercises.printFactorial(5);
 
         System.out.println("\n\n");
+        
+        LoopsExercises.fizzBuzz(100);
+        
+        System.out.println("\n\n");
+        
+        LoopsExercises.fizzBuzzInJava8(35);
+        
+        System.out.println("\n\n");
+
+
 
 
 
