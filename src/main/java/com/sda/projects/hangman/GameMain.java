@@ -1,102 +1,86 @@
 package com.sda.projects.hangman;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameMain {
-    public static int bandymai = 5;
-    public static void main(String[] args) throws IOException {
-        System.out.println("____________");
-        System.out.println("      |     ");
-        System.out.println("      O     ");
-        System.out.println("     /|\\    ");
-        System.out.println("     /\\    ");
+	
+	static Scanner scanner = new Scanner(System.in);
 
-        String zodis = "labas";
-        String hiddenZodis = "*****";
-        char[] globalCharArray = hiddenZodis.toCharArray();
+	public static void main(String[] args) throws IOException {
+		
+		//apsibreziame sarasa reikalingu kintamuju
+		List<String> zodziuSarasas = new ArrayList<>(
+				Arrays.asList("varna", "stalas", "dangus", "namas", "buratinas"));
+		
+		int bandymai = 5;
+		int randomSkaicius = ThreadLocalRandom.current().nextInt(0, 5);
+		String randomZodis = zodziuSarasas.get(randomSkaicius);
+		int randomZodzioIlgis = randomZodis.length();
+		//printerio klase, kuri spausdins pakaruokli
+		HangManPrinter hangManPrinter = new HangManPrinter();
+		
+		//string buffer klase, skirta sukonstruoti eilute
+		StringBuffer stringBuffer = new StringBuffer();
+		// Sukonstruojame atitinkamo ilgio ****** eilute.
+		for (int i = 0; i < randomZodzioIlgis; i++) {
+			stringBuffer.append("*");
+		}
+		String pasleptasZodis = stringBuffer.toString();
+		
+		//paslepta zodi paverciame i simboliu masyva 
+		char[] pasleptoZodzioSimboliuMasyvas = pasleptasZodis.toCharArray();
+		//random zodi paverciame i simboliu masyva
+		char[] randomZodzioSimboliuMasyvas = randomZodis.toCharArray();
 
-        Scanner scanner = new Scanner(System.in);
+		System.out.println("Sveiki atvyke i zaidima KARTUVES!");
+		System.out.println();
+		System.out.println("Atspekite zodi - jus turite 5 sansus suklysti. Speliokite po viena raide!");
+		System.out.println();
+		
+		//sukame cikla tol, kol bus tenkinama salyga "bandymai > 0"
+		do {
+			System.out.println("Spekite raide: ");
+			//nuskaitome vartotojo ivesta simboli
+			char raide = scanner.next().charAt(0);
+			
+			//tikriname ar random zodyje egzistuoja ivestas simbolis
+			if (randomZodis.indexOf(raide) != -1) {
+				System.out.println("================================================================");
+				System.out.println("Atspejai raide! Teisinga raide buvo [" + raide + "] Spek toliau!");
+				//sukame cikla per visus random zodzio simbolius ir tikriname, kelintas simbolis buvo atspetas
+				//tada esama "*" simboli pakeiciame atspeta raide. 
+				//po pakeitimo paslepta eilute atrodys pvz. taip "**a*a*"
+				for (int i = 0; i < randomZodzioSimboliuMasyvas.length; i++) {
+					if (randomZodzioSimboliuMasyvas[i] == raide) {
+						pasleptoZodzioSimboliuMasyvas[i] = raide;
+					}
+				}
 
-        System.out.println("Sveiki atvyke i zaidima KARTUVES!");
-        System.out.println();
-        System.out.println("Atspekite zodi - jus turite 5 sansus suklysti. Speliokite po viena raide!");
-        System.out.println("Spek raide: ");
+				// Jeigu nebera neatspetu simboliu, isspausdiname teksta ir nutraukiame cikla.
+				if (!new String(pasleptoZodzioSimboliuMasyvas).contains("*")) {
+					System.out.println("Sveikiname! Atspejai zodi >>> [" + new String(pasleptoZodzioSimboliuMasyvas) + "] <<<");
+					break;
+				} else {
+					System.out.println("Zodis, kuris turi atspeti, atrodo taip: " + new String(pasleptoZodzioSimboliuMasyvas));
+					System.out.println("================================================================");
+				}
+			} else {
+				//jei raides atspeti nepavyo, kvieciame HangManPrinter klases metoda, kuris isspausdina teksta
+				bandymai = hangManPrinter.invokePrinting(bandymai);
+				if (bandymai > 0) {
+					System.out.println("Neaspejai! Bandyk dar karta! Liko badymu: " + bandymai);
+					System.out.println("Zodis, kuris turi atspeti: " + new String(pasleptoZodzioSimboliuMasyvas));
+				}
 
-        do {
-            char raide = scanner.next().charAt(0);
-            if(zodis.indexOf(raide) != -1) {
-                System.out.println("Atspejai raide! Teisinga raide buvo [" + raide + "] Spek toliau!");
-                for(int i = 0; i < zodis.toCharArray().length; i++){
-                    if(zodis.toCharArray()[i] == raide) {
-                        globalCharArray[i] = raide;
-                    }
+			}
+		} while (bandymai > 0);
 
-                }
-               
-                //Jeigu nebera neatspetu simboliu
-                if(!new String(globalCharArray).contains("*")) {
-                	System.out.print("Sveikiname! Atspejai zodi >>> [" + new String(globalCharArray) + "] <<<");
-                } else {
-                	 System.out.println("Zodis, kuris turi atspeti, atrodo taip: " + new String(globalCharArray));
-                }
-            } else {
-                invokePrinting();
-
-                System.out.println("Neaspejai! Bandyk dar karta! Liko badymu: " + bandymai);
-                System.out.println("Zodis, kuris turi atspeti: " + new String(globalCharArray) );
-            }
-        } while (bandymai > 0);
-    }
-
-    private static void invokePrinting() throws IOException {
-        if(bandymai == 5) {
-            firstMistake();
-            bandymai--;
-        } else if (bandymai == 4) {
-            secondMistake();
-            bandymai--;
-        } else if (bandymai == 3) {
-            thirdMistake();
-            bandymai--;
-        } else if (bandymai == 2) {
-            fourthMistake();
-            bandymai--;
-        }
-
-    }
-
-    private static void firstMistake() throws IOException {
-        System.out.println("KLAIDA!");
-        System.out.println("____________");
-        System.out.println("      |     ");
-        System.out.println("      O     ");
-        System.out.println();
-    }
-
-    private static void secondMistake() throws IOException {
-        System.out.println("____________");
-        System.out.println("      |     ");
-        System.out.println("      O     ");
-        System.out.println("      |     ");
-        System.out.println();
-    }
-
-    private static void thirdMistake() throws IOException {
-        System.out.println("____________");
-        System.out.println("      |     ");
-        System.out.println("      O     ");
-        System.out.println("     /|   ");
-        System.out.println();
-    }
-
-    private static void fourthMistake() throws IOException {
-        System.out.println("____________");
-        System.out.println("      |     ");
-        System.out.println("      O     ");
-        System.out.println("     /|\\    ");
-        System.out.println();
-    }
-
+		System.out.println("Zaidimas Baigtas");
+	}
 
 }
