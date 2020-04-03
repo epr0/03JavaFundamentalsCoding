@@ -2,3 +2,10 @@
 .idea
 *.iml
 /target
+.classpath
+.project
+.settings
+/bin
+bin
+.gitignore
+gitignore
