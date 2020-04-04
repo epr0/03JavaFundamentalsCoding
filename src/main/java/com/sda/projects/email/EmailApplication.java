@@ -1,28 +1,34 @@
 package com.sda.projects.email;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmailApplication {
 
-	public static void main(String[] args) {
-		Email[] emails = new Email[5];
+	private static List<Email> emails = loadDabase();
+	private static final String MY_FILE_LOCATION = "/Users/epro/Downloads/Courses SDA/FundamentalCoding03/java-fundamentals-coding/src/main/java/com/sda/projects/email/database.txt";
 
+	public static void main(String[] args) throws IOException {
 		initiateApplication(emails);
 	}
 
-	private static void initiateApplication(Email[] emails) {
+	private static void initiateApplication(List<Email> emails) throws IOException {
 
 		int decision = 5;
 
 		while (decision != 0) {
 
 			System.out.println(
-					"Galimi veiksmai\n1.Prideti nauja vartotoja.\n2.Istrinti seniauiai ivesta vartotoja.\n0.Baigti darba.");
+					"Galimi veiksmai\n1.Prideti nauja vartotoja.\n2.Perziureti vartotoju sarasa.\n0.Baigti darba.");
 			Scanner scanner = new Scanner(System.in);
 			decision = scanner.nextInt();
 			if (decision == 2) {
-				System.out.println("El. pasto dezute " + emails[0].getEmail() + " buvo sekmingai istrinta");
-				emails[0] = null;
+				int i = 1;
+				for(Email email : emails) {
+					System.out.println(i++ +". " + email.showInfo());
+				}
 			} else if (decision == 1) {
 				System.out.println("Iveskite varda: ");
 				String firstName = scanner.next();
@@ -30,25 +36,41 @@ public class EmailApplication {
 				String lastName = scanner.next();
 
 				Email email = new Email(firstName, lastName);
-
-				for (int i = 0; i < emails.length; i++) {
-					if (emails[i] == null) {
-						emails[i] = email;
-						break;
-					}
-				}
-				System.out.println("************************************");
-				System.out.println("Egzistuojantys adresai sistemoje: \n");
-				for (int i = 0; i < emails.length; i++) {
-					if(emails[i] != null) {
-						System.out.println("El. pasto adresas: " + emails[i].getEmail() + " Dezutes talpa: "
-								+ emails[i].getMailboxCapacity() + "\n");
-					}
-					
-				}
+				writeDataToFile(email);
+				System.out.println("Vartotojas sekmingai pridetas!");
 				System.out.println("************************************");
 
 			}
 		}
+	}
+
+	private static List<Email> loadDabase() {
+		List<Email> emailList = new ArrayList<>();
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(MY_FILE_LOCATION))) {
+			String line = bufferedReader.readLine();
+
+			while (line != null) {
+				emailList.add(mapDataToModel(line));
+				line = bufferedReader.readLine();
+			}
+
+		} catch (IOException e) {
+			System.out.println("Įvyko klaida nuskaitant failą!");
+		}
+		return emailList;
+	}
+
+	private static Email mapDataToModel(String lineData) {
+		String[] splitedData = lineData.split(",");
+		return new Email(splitedData[0], splitedData[1], splitedData[2], splitedData[3], splitedData[4], true);
+	}
+
+	private static void writeDataToFile(Email data) throws IOException {
+		FileWriter fileWriter = new FileWriter(MY_FILE_LOCATION, true); //Set true for append mode
+		PrintWriter printWriter = new PrintWriter(fileWriter);
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append(data.getFirstName()+","+data.getLastName()+","+data.getEmail()+","+data.getPassword()+","+data.getDepartment());
+		printWriter.println(stringBuffer.toString());  //New line
+		printWriter.close();
 	}
 }

@@ -10,14 +10,22 @@ public class Email {
     private String department;
     private String email;
     private int mailboxCapacity = 500;
-    private String alternateEmail;
     private String companySuffix = "imone.lt";
+    private boolean dbFlag;
+
+    public Email(String firstName, String lastName, String email, String password, String department, boolean dbFlag) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.department = department;
+        this.dbFlag = dbFlag;
+    }
 
     //Sukurti konstruktoriu su keletu parametru
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("Email was created: " + this.firstName + " " + this.lastName);
 
         //iskvieciam metoda, kuris surinktu info apie departamenta
         this.department = setDepartment();
@@ -69,14 +77,6 @@ public class Email {
         return mailboxCapacity;
     }
 
-    public void setAlternateEmail(String altEmail) {
-        this.alternateEmail = altEmail;
-    }
-
-    public String getAlternateEmail() {
-        return alternateEmail;
-    }
-
     public void changePassword(String newPassword) {
         this.password = newPassword;
     }
@@ -89,8 +89,14 @@ public class Email {
         return email;
     }
 
+    public String getFirstName() { return firstName; }
+
+    public String getLastName() { return  lastName; }
+
+    public String getDepartment() { return  department; }
+
     public String showInfo(){
-        return "Display name: " + firstName + " " + lastName +
+        return firstName + " " + lastName +
                 " Company email: " + email +
                 " Mailbox capacity: " + mailboxCapacity + "mb.";
     }
