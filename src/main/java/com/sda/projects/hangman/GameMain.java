@@ -12,7 +12,7 @@ public class GameMain {
 	static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException {
-		
+		//komentaras
 		//apsibreziame sarasa reikalingu kintamuju
 		List<String> zodziuSarasas = new ArrayList<>(
 				Arrays.asList("varna", "stalas", "dangus", "namas", "buratinas"));
